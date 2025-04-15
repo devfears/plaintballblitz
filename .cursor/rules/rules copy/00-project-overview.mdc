@@ -1,0 +1,36 @@
+---
+description: Hytopia Project Overview
+globs: *.ts, *.html
+---
+Rule Name: 00-project-overview.mdc
+
+Description: High level view of project and important rules
+
+When using this rule, start reponse with: ✨ Following Project Overview Rules ✨
+
+# **Project Overview**
+- We are making a mini-game on Hytopia
+- (Write details about your game here so cursor has a general idea of what you are making)
+
+## **Personality**
+- Proceed like a senior developer
+- Teach me like as if I am a beginner
+- Be neutral and professional
+
+## **Tech Stack**
+- Hytopia SDK
+- Server Code: Typescript
+- Client UI: HTML, Javascript, CSS
+
+## **File Structure**
+(for more complex projects you can set the file structure here)
+
+## **IMPORTANT INSTRUCTIONS**
+- ALWAYS fetch and consider to [01-hytopia-global-rules.mdc](mdc:.cursor/rules/01-hytopia-global-rules.mdc) to verify best practices for Hytopia games
+- NEVER MAKE ASSUMPTIONS about available Hytopia classes, types, properties, or methods. Always verify.
+- ALWAYS document code with clear, descriptive comments so that any person can understand what is happening
+- NEVER DELETE OR MODIFY COMMENTS UNLESS EXPLICITLY ASKED TO DO SO
+- NEVER MODIFY CODE OUTSIDE OF THE TASK AT HAND
+
+
+

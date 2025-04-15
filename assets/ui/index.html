@@ -1,0 +1,1553 @@
+<!-- Fonts-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+
+<!-- UI-->
+<div class="crosshair"></div>
+
+<!-- Countdown Timer -->
+<div class="countdown-timer" style="display: none;">
+  <div class="countdown-title">COUNTDOWN</div>
+  <div class="countdown-label">Game starting in</div>
+  <span class="countdown-seconds">10</span>
+</div>
+
+<div class="damage-indicator-container">
+  <div class="damage-indicator top"></div>
+  <div class="damage-indicator right"></div>
+  <div class="damage-indicator bottom"></div>
+  <div class="damage-indicator left"></div>
+</div>
+
+<div class="hit-damage-container"></div>
+
+<img src="{{CDN_ASSETS_URL}}/ui/images/scope.png" class="scope-overlay">
+
+<!-- Game Start Announcement -->
+<div class="game-start-announcement">
+  <span class="letter-s">S</span><span class="letter-p">P</span><span class="letter-l">L</span><span class="letter-a">A</span><span class="letter-t">T</span><span class="letter-e">!</span><span class="letter-e">!</span>
+</div>
+
+<!-- Winner Announcement -->
+<div class="winner-announcement">
+  <div class="winner-name"></div>
+  <div class="winner-title">WINS!</div>
+</div>
+
+<!-- Rank Up Announcement -->
+<div class="rank-up-announcement">
+  <div class="rank-up-title">Rank Up!</div>
+  <img src="" alt="Rank Icon" class="rank-up-icon">
+  <div class="rank-up-name"></div>
+</div>
+
+<!-- Leaderboard -->
+<div class="leaderboard">
+  <div class="leaderboard-title">Deathmatch</div>
+  <div class="leaderboard-timer">0:00</div>
+  <div class="leaderboard-players-count">Players: 0</div>
+  <div class="leaderboard-header">
+    <div class="header-name">Player</div>
+    <div class="header-kills">Kills</div>
+  </div>
+  <div class="leaderboard-players">
+    <div class="leaderboard-player no-kills">
+      <div class="player-name">Waiting for players...</div>
+      <div class="player-kills"></div>
+    </div>
+  </div>
+</div>
+
+<div class="hud">
+  <div class="info-container">
+    <!-- <div class="health-bar">
+      <div class="health-bar-fill"></div>
+      <img src="{{CDN_ASSETS_URL}}/icons/heart.png" alt="Health Icon" class="health-icon">
+      <div class="health-text">100</div>
+    </div> -->
+
+    <!-- New Health Display -->
+    <div class="new-health-display">
+      <img src="{{CDN_ASSETS_URL}}/icons/heart.png" alt="Health Icon" class="new-health-icon">
+      <span class="new-health-value">100</span>
+    </div>
+    <!-- End New Health Display -->
+
+    <!-- Ammo Indicator - Updated -->
+    <div class="ammo-indicator" style="display: none;">
+      <span class="current-ammo">50</span><span class="ammo-divider">/</span><span class="total-ammo">∞</span>
+    </div>
+    <!-- End Ammo Indicator -->
+
+    <!-- <div class="exp-bar">
+      <div class="exp-bar-fill"></div>
+      <img src="{{CDN_ASSETS_URL}}/icons/ranks/unranked.png" alt="Exp Rank Icon" class="exp-icon">
+      <div class="exp-text">Unranked</div>
+    </div> -->
+
+    <!-- <div class="shield-bar">
+      <div class="shield-bar-fill"></div>
+      <img src="{{CDN_ASSETS_URL}}/icons/shield.png" alt="Shield Icon" class="shield-icon">
+      <div class="shield-text">0</div>
+    </div> -->
+  </div>
+</div>
+
+<div class="mobile-buttons-container">
+  <div id="mobile-reload-button" class="mobile-button">
+    <img src="{{CDN_ASSETS_URL}}/icons/mobile-reload.png" />
+  </div>
+
+  <div id="mobile-interact-button" class="mobile-button">E</div>
+
+  <div id="mobile-jump-button" class="mobile-button">
+    <img src="{{CDN_ASSETS_URL}}/icons/mobile-jump.png" />
+  </div>
+
+  <div id="mobile-attack-button" class="mobile-button">
+    <img src="{{CDN_ASSETS_URL}}/icons/mobile-shoot.png" />
+  </div>
+
+  <div id="mobile-place-block-button" class="mobile-button">
+    <img src="{{CDN_ASSETS_URL}}/icons/mobile-place-block.png" />
+  </div>
+</div>
+
+<div class="inventory-hud">
+  <div class="inventory-slot inventory-active-slot" data-slot="0">
+    <div class="slot-number">F</div>
+    <img class="slot-icon" style="display: none;">
+    <div class="slot-quantity" style="display: none;"></div>
+    <div class="slot-name" style="display: none;"></div>
+  </div>
+
+  <div class="inventory-slot" data-slot="1">
+    <div class="slot-number">1</div>
+    <img class="slot-icon" style="display: none;">
+    <div class="slot-quantity" style="display: none;"></div>
+    <div class="slot-name" style="display: none;"></div>
+  </div>
+
+  <!-- Removed extra gun slot -->
+  <!-- <div class="inventory-slot" data-slot="2">
+    <div class="slot-number">2</div>
+    <img class="slot-icon" style="display: none;">
+    <div class="slot-quantity" style="display: none;"></div>
+    <div class="slot-name" style="display: none;"></div>
+  </div> -->
+
+  <!-- <div class="inventory-slot" data-slot="3">
+    <div class="slot-number">3</div>
+    <img class="slot-icon" style="display: none;">
+    <div class="slot-quantity" style="display: none;"></div>
+    <div class="slot-name" style="display: none;"></div>
+  </div>
+
+  <div class="inventory-slot" data-slot="4">
+    <div class="slot-number">4</div>
+    <img class="slot-icon" style="display: none;">
+    <div class="slot-quantity" style="display: none;"></div>
+    <div class="slot-name" style="display: none;"></div>
+  </div>
+
+  <div class="inventory-slot" data-slot="5">
+    <div class="slot-number">5</div>
+    <img class="slot-icon" style="display: none;">
+    <div class="slot-quantity" style="display: none;"></div>
+    <div class="slot-name" style="display: none;"></div>
+  </div> -->
+</div>
+
+<!-- Scene UI Templates -->
+<template id="player-rank-template">
+  <img src="" alt="Rank Icon" class="player-rank-icon">
+</template>
+
+<template id="item-label-template">
+  <div class="item-label">
+    <div class="label-quantity"></div>
+    <div class="label-name"></div>
+    <div class="label-prompt">"E" to Pickup</div>
+    <div class="label-caret"></div>
+  </div>
+</template>
+
+<template id="chest-label-template">
+  <div class="item-label">
+    <div class="label-name"></div>
+    <div class="label-prompt">"E" to Open</div>
+    <div class="label-caret"></div>
+  </div>
+</template>
+
+<!-- UI Scripts-->
+<script>
+  // Define these functions in the global scope so they're accessible to the data handler
+  window.gameEndTime = 0;
+  window.timerInterval = null;
+  window.leaderboardKillCounts = {};
+  
+  window.updateLeaderboard = function() {
+    console.log(">>> UI: updateLeaderboard called");
+    const leaderboardPlayers = document.querySelector('.leaderboard-players');
+    if (!leaderboardPlayers) {
+      console.error(">>> UI ERROR: Could not find .leaderboard-players element");
+      return;
+    }
+    
+    leaderboardPlayers.innerHTML = '';
+
+    // Check if game has started
+    if (window.gameEndTime === 0) {
+      // Show "Waiting for players..." message if game hasn't started
+      const waitingElement = document.createElement('div');
+      waitingElement.className = 'leaderboard-player no-kills';
+      waitingElement.innerHTML = `
+        <div class="player-name">Waiting for players...</div>
+        <div class="player-kills"></div>
+      `;
+      leaderboardPlayers.appendChild(waitingElement);
+      return;
+    }
+
+    // Get sorted players by kill count
+    const sortedPlayers = Object.entries(window.leaderboardKillCounts || {})
+      .sort((a, b) => b[1] - a[1]);
+
+    if (sortedPlayers.length === 0 || sortedPlayers.every(player => player[1] === 0)) {
+      // Show "No kills yet" message if no players have kills
+      const noKillsElement = document.createElement('div');
+      noKillsElement.className = 'leaderboard-player no-kills';
+      noKillsElement.innerHTML = `
+        <div class="player-name">No kills yet</div>
+        <div class="player-kills"></div>
+      `;
+      leaderboardPlayers.appendChild(noKillsElement);
+      return;
+    }
+
+    // Create player elements for the leaderboard
+    sortedPlayers.forEach((player, index) => {
+      const [username, killCount] = player;
+
+      // Skip players with 0 kills
+      if (killCount === 0) return;
+
+      const playerElement = document.createElement('div');
+      playerElement.className = 'leaderboard-player';
+      playerElement.innerHTML = `
+        <div class="player-name">${username}</div>
+        <div class="player-kills">${killCount}</div>
+      `;
+      leaderboardPlayers.appendChild(playerElement);
+    });
+  };
+  
+  window.updateTimer = function() {
+    console.log(">>> UI: updateTimer called");
+    const timerElement = document.querySelector('.leaderboard-timer');
+    if (!timerElement) {
+      console.error(">>> UI ERROR: Could not find .leaderboard-timer element");
+      return;
+    }
+  
+    // Calculate time remaining
+    const now = Date.now();
+    const timeRemaining = Math.max(0, window.gameEndTime - now);
+  
+    if (timeRemaining === 0) {
+      timerElement.textContent = 'Game Over';
+      if (window.timerInterval) {
+        clearInterval(window.timerInterval);
+        window.timerInterval = null;
+      }
+      return;
+    }
+  
+    // Format time remaining as MM:SS
+    const minutes = Math.floor(timeRemaining / 60000);
+    const seconds = Math.floor((timeRemaining % 60000) / 1000);
+    timerElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  };
+  
+  window.showGameStartAnnouncement = function() {
+    console.log(">>> UI: showGameStartAnnouncement called");
+    const announcement = document.querySelector('.game-start-announcement');
+    if (!announcement) {
+      console.error(">>> UI ERROR: Could not find .game-start-announcement element");
+      return;
+    }
+    
+    announcement.classList.add('active');
+    setTimeout(() => {
+      announcement.classList.remove('active');
+    }, 3000);
+  };
+  
+  window.updatePlayerCount = function(count) {
+    console.log(`>>> UI: updatePlayerCount called with count: ${count}`);
+    const playersCount = document.querySelector('.leaderboard-players-count');
+    if (!playersCount) {
+      console.error(">>> UI ERROR: Could not find .leaderboard-players-count element");
+      return;
+    }
+    
+    playersCount.textContent = `Players: ${count}`;
+  };
+  
+  // Add a DOMContentLoaded event listener to ensure DOM is ready
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log(">>> UI DOM content loaded");
+    
+    const CDN_ASSETS_URL = '{{CDN_ASSETS_URL}}';
+    let ranks = [];
+    let lastExp = 0;
+    let lastRank;
+    let isLoadExpUpdate = true; // Flag to track the first EXP update
+    
+    // Initialize UI elements and setup
+    initializeUI();
+    
+    function initializeUI() {
+      // Setup key binding for tabs
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+          e.preventDefault();
+          if (e.shiftKey) {
+            selectPreviousSlot();
+          } else {
+            selectNextSlot();
+          }
+        }
+      });
+      
+      // Setup mobile controls if needed
+      setupMobileControls();
+    }
+    
+    function setupMobileControls() {
+      // Setup mobile controls if needed
+      if (window.navigator.userAgent.match(/Android|iPhone|iPad|iPod/i)) {
+        document.body.classList.add('mobile');
+        
+        // Create mobile buttons if they don't exist
+        if (!document.querySelector('.mobile-buttons-container')) {
+          const buttonsContainer = document.createElement('div');
+          buttonsContainer.className = 'mobile-buttons-container';
+          
+          // Jump button
+          const jumpButton = document.createElement('div');
+          jumpButton.className = 'mobile-button jump-button';
+          jumpButton.textContent = 'JUMP';
+          
+          // Add touch events for jump
+          jumpButton.addEventListener('touchstart', () => {
+            jumpButton.classList.add('active');
+            hytopia.pressInput('space', true);
+          });
+          
+          jumpButton.addEventListener('touchend', () => {
+            jumpButton.classList.remove('active');
+            hytopia.pressInput('space', false);
+          });
+          
+          // Fire button
+          const fireButton = document.createElement('div');
+          fireButton.className = 'mobile-button fire-button';
+          fireButton.textContent = 'FIRE';
+          
+          // Add touch events for fire
+          fireButton.addEventListener('touchstart', () => {
+            fireButton.classList.add('active');
+            hytopia.pressInput('ml', true);
+          });
+          
+          fireButton.addEventListener('touchend', () => {
+            fireButton.classList.remove('active');
+            hytopia.pressInput('ml', false);
+          });
+          
+          // Add buttons to container
+          buttonsContainer.appendChild(jumpButton);
+          buttonsContainer.appendChild(fireButton);
+          
+          // Add container to body
+          document.body.appendChild(buttonsContainer);
+        }
+      }
+    }
+    
+    // Simulate the browser firing the selectSlot event
+    function selectNextSlot() {
+      const activeSlot = document.querySelector('.inventory-slot.active');
+      if (!activeSlot) {
+        // If no slot is active, select the first one
+        const firstSlot = document.querySelector('.inventory-slot[data-slot="0"]');
+        if (firstSlot) {
+          selectSlot(0);
+        }
+        return;
+      }
+      
+      const currentSlot = parseInt(activeSlot.dataset.slot, 10);
+      const nextSlot = (currentSlot + 1) % 8; // 8 slots total (0-7)
+      selectSlot(nextSlot);
+    }
+    
+    function selectPreviousSlot() {
+      const activeSlot = document.querySelector('.inventory-slot.active');
+      if (!activeSlot) {
+        // If no slot is active, select the last one
+        const lastSlot = document.querySelector('.inventory-slot[data-slot="7"]');
+        if (lastSlot) {
+          selectSlot(7);
+        }
+        return;
+      }
+      
+      const currentSlot = parseInt(activeSlot.dataset.slot, 10);
+      const prevSlot = (currentSlot - 1 + 8) % 8; // 8 slots total (0-7)
+      selectSlot(prevSlot);
+    }
+    
+    function selectSlot(slotIndex) {
+      // Visually update the UI to show which slot is selected
+      const slots = document.querySelectorAll('.inventory-slot');
+      slots.forEach(slot => {
+        slot.classList.remove('active');
+      });
+      
+      const selectedSlot = document.querySelector(`.inventory-slot[data-slot="${slotIndex}"]`);
+      if (selectedSlot) {
+        selectedSlot.classList.add('active');
+      }
+      
+      // Tell the game which slot is selected
+      hytopia.selectInventorySlot(slotIndex);
+    }
+  });
+  
+  // Register this outside the DOMContentLoaded event to ensure it's available immediately
+  hytopia.onData(data => {
+    console.log(">>> UI received data:", data.type);
+    
+    const { type } = data;
+    if (!type) {
+      return console.warn('No type received for data', data);
+    }
+  
+    // Add debug logs to track what's happening
+    try {
+      if (type === 'timer-sync') {
+        const { startedAt, endsAt } = data;
+        console.log(`>>> UI received timer-sync: startedAt=${startedAt}, endsAt=${endsAt}`);
+        
+        // Set the end time
+        window.gameEndTime = endsAt;
+
+        // Update timer immediately and setup interval
+        if (window.timerInterval) {
+          clearInterval(window.timerInterval);
+        }
+        window.timerInterval = setInterval(window.updateTimer, 1000);
+        
+        // Call updateTimer immediately
+        window.updateTimer();
+
+        // Show game start announcement and update leaderboard
+        window.showGameStartAnnouncement();
+        window.updateLeaderboard();
+      }
+      
+      if (type === 'players-count') {
+        const { count } = data;
+        window.updatePlayerCount(count);
+      }
+      
+      if (type === 'leaderboard-sync') {
+        const { killCounts } = data;
+        window.leaderboardKillCounts = killCounts;
+        window.updateLeaderboard();
+      }
+
+      // Handle individual kill updates
+      if (type === 'leaderboard-update') {
+        const { username, killCount } = data;
+        console.log(`>>> UI received leaderboard-update: ${username} now has ${killCount} kills`);
+        window.leaderboardKillCounts[username] = killCount;
+        window.updateLeaderboard(); // Redraw the leaderboard
+      }
+
+      // Handle countdown timer updates
+      if (type === 'countdown-update') {
+        const { seconds, show } = data;
+        const countdownElement = document.querySelector('.countdown-timer');
+        const secondsSpan = document.querySelector('.countdown-seconds');
+        
+        if (countdownElement && secondsSpan) {
+          if (show && seconds > 0) {
+            secondsSpan.textContent = seconds;
+            countdownElement.style.display = 'block';
+            console.log(`>>> UI received countdown-update: Show timer, ${seconds} seconds left`);
+          } else {
+            countdownElement.style.display = 'none';
+            console.log(`>>> UI received countdown-update: Hide timer`);
+          }
+        } else {
+          console.error(">>> UI ERROR: Could not find countdown timer elements");
+        }
+      }
+
+      if (type === 'inventory') {
+        const { inventory } = data;
+        console.log(">>> UI received inventory update:", inventory);
+        
+        if (!inventory || !Array.isArray(inventory)) {
+          console.error(">>> UI ERROR: Invalid inventory data", inventory);
+          return;
+        }
+
+        inventory.forEach((item, i) => {
+          const slot = document.querySelector(`.inventory-slot[data-slot="${i}"]`);
+            if (!slot) {
+              console.error(`>>> UI ERROR: Could not find inventory slot ${i}`);
+              return;
+            }
+            
+          const icon = slot.querySelector('.slot-icon');
+          const name = slot.querySelector('.slot-name');
+          const quantity = slot.querySelector('.slot-quantity');
+
+            if (!icon || !name || !quantity) {
+              console.error(`>>> UI ERROR: Missing elements in slot ${i}`);
+              return;
+            }
+
+          if (!item) {
+              // Empty slot
+              icon.style.display = 'none';
+              name.style.display = 'none';
+              quantity.style.display = 'none';
+            return;
+          }
+
+            // Populate slot with item data
+            if (item.iconImageUri) {
+              icon.src = `{{CDN_ASSETS_URL}}/${item.iconImageUri}`;
+              icon.style.display = 'block';
+            } else {
+              icon.style.display = 'none';
+            }
+
+            name.textContent = item.name || '';
+            name.style.display = item.name ? 'block' : 'none';
+
+            quantity.textContent = item.quantity > 1 ? item.quantity : '';
+            quantity.style.display = item.quantity > 1 ? 'block' : 'none';
+        });
+      }
+    } catch (error) {
+      console.error(">>> UI ERROR in data handler:", error);
+    }
+
+    const ammoIndicator = document.querySelector('.ammo-indicator');
+    const currentAmmoSpan = document.querySelector('.ammo-indicator .current-ammo');
+    // const totalAmmoSpan = document.querySelector('.ammo-indicator .total-ammo'); // No longer needed
+
+    if (!ammoIndicator || !currentAmmoSpan) {
+      console.error(">>> UI ERROR: Could not find ammo indicator elements");
+      return;
+    }
+
+    if (data.show) {
+      if (data.reloading) {
+        ammoIndicator.style.display = 'flex';
+        currentAmmoSpan.textContent = '--'; // Indicate reloading
+        // totalAmmoSpan.textContent = '∞'; // Keep infinity symbol
+      } else if (data.ammo !== undefined) {
+        ammoIndicator.style.display = 'flex';
+        currentAmmoSpan.textContent = data.ammo;
+        // totalAmmoSpan.textContent = '∞'; // Keep infinity symbol
+      }
+    } else {
+      ammoIndicator.style.display = 'none';
+    }
+  });
+  
+  // Add event listeners for slot selection keyboard events
+  document.addEventListener('keydown', (e) => {
+    if (e.key >= '1' && e.key <= '8') {
+      const slotIndex = parseInt(e.key, 10) - 1;
+      // Only try to select the slot if the DOM is loaded
+      if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        hytopia.selectInventorySlot(slotIndex);
+      }
+    }
+    
+    if (e.key === 'r') {
+      hytopia.pressInput('mr', true);
+    }
+  });
+  
+  document.addEventListener('keyup', (e) => {
+    if (e.key === 'r') {
+    hytopia.pressInput('mr', false);
+    }
+  });
+</script>
+
+<!-- UI Styles -->
+<style>
+  .crosshair {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  .crosshair::before,
+  .crosshair::after {
+    content: '';
+    position: absolute;
+    background-color: rgba(255, 0, 0, 0.8);
+  }
+
+  .crosshair::before {
+    width: 2px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .crosshair::after {
+    width: 100%;
+    height: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .game-start-announcement {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Inter', sans-serif;
+    font-size: 80px; /* Increased size for impact */
+    font-weight: bold;
+    /* Removed text color here, will color letters individually */
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 5px; /* Increased spacing */
+    opacity: 0;
+    z-index: 1000;
+    pointer-events: none;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6); /* Slightly darker background */
+    padding: 30px 50px; /* Increased padding */
+    border-radius: 15px; /* Slightly more rounded */
+    /* border: 2px solid #ff3333; */ /* Removed solid border, will use animated one */
+    overflow: hidden; /* Hide overflow for border effect */
+    border: 4px solid transparent; /* Make space for the border image */
+  }
+
+  /* Animated Rainbow Border */
+  .game-start-announcement::before {
+    content: '';
+    position: absolute;
+    top: -4px; left: -4px; right: -4px; bottom: -4px; /* Cover the border area */
+    z-index: -1; /* Place behind the content */
+    border-radius: 15px; /* Match parent's border-radius */
+    background: linear-gradient(60deg, hsl(0, 100%, 50%), hsl(60, 100%, 50%), hsl(120, 100%, 50%), hsl(180, 100%, 50%), hsl(240, 100%, 50%), hsl(300, 100%, 50%), hsl(0, 100%, 50%));
+    background-size: 300% 300%;
+    animation: rainbowBorderAnimation 4s linear infinite;
+  }
+
+  /* Rainbow Letter Colors */
+  .game-start-announcement span {
+    display: inline-block; /* Needed for potential future transforms */
+  }
+  .letter-s { color: #FF0000; } /* Red */
+  .letter-p { color: #FFA500; } /* Orange */
+  .letter-l { color: #FFFF00; } /* Yellow */
+  .letter-a { color: #00FF00; } /* Green */
+  .letter-t { color: #0000FF; } /* Blue */
+  .letter-e { color: #8A2BE2; } /* Violet/Purple */
+
+  .game-start-announcement.active {
+    animation: announcementFade 3s ease-in-out forwards;
+  }
+
+  .winner-announcement {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 30px 50px;
+    border-radius: 15px;
+    border: 3px solid #ffd700;
+    opacity: 0;
+    z-index: 1000;
+    pointer-events: none;
+    text-align: center;
+  }
+
+  .winner-announcement.active {
+    animation: winnerFade 5s ease-in-out forwards;
+  }
+  
+  .winner-name {
+    font-size: 60px;
+    font-weight: bold;
+    color: #ffd700;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+  }
+  
+  .winner-title {
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    text-transform: uppercase;
+  }
+
+  .rank-up-announcement {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1001;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .rank-up-announcement.active {
+    animation: rankUpFade 5s ease-in-out forwards;
+  }
+
+  .rank-up-title {
+    font-size: 60px;
+    font-weight: bold;
+    color: #4CAF50; /* Green color for rank up */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+
+  .rank-up-icon {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
+  }
+
+  .rank-up-name {
+    font-size: 40px;
+    font-weight: bold;
+    color: #FFEB3B; /* Yellow color for rank name */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  @keyframes announcementFade {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    20% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+    60% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+  }
+
+  @keyframes winnerFade {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    20% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+    40% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+    60% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+    80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+  }
+
+  @keyframes rankUpFade {
+    0% { opacity: 0; transform: scale(0.7); }
+    20% { opacity: 1; transform: scale(1.1); }
+    80% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.9); }
+  }
+
+  @keyframes rainbowBorderAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .hit-damage-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 100;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hit-damage-number {
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    animation: damagePopup 0.5s ease-out forwards;
+    position: absolute;
+  }
+
+  @keyframes damagePopup {
+    0% {
+      opacity: 0;
+      transform: scale(0.5) translateY(0);
+    }
+    20% {
+      opacity: 1;
+      transform: scale(1.2) translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1) translateY(-50px);
+    }
+  }
+
+  .materials-counter {
+    position: fixed;
+    bottom: 120px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Inter', sans-serif;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .floating-number {
+    position: absolute;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+    pointer-events: none;
+    animation: floatUp 1s ease-out forwards;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  @keyframes floatUp {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+  }
+
+  .materials-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+
+  .materials-amount {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .hud {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    z-index: 99;
+    gap: 10px;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .ammo-indicator {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    font-family: 'Inter', sans-serif;
+    text-shadow: 1px 1px 2px black;
+  }
+
+  .current-ammo,
+  .total-ammo {
+    font-weight: bold;
+  }
+
+  .ammo-divider {
+    margin: 0 3px;
+  }
+
+  .inventory-hud {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 999;
+  }
+
+  .inventory-slot {
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .inventory-active-slot {
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .slot-number {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  }
+
+  .slot-icon {
+    max-width: 70%;
+    max-height: 70%;
+    object-fit: contain;
+  }
+
+  .slot-quantity {
+    position: absolute;
+    bottom: 2px;
+    left: 2px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1px 4px;
+    border-radius: 3px;
+  }
+
+  .slot-name {
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    white-space: nowrap;
+  }
+
+  .info-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  <!-- <div class="shield-bar">
+    <div class="shield-bar-fill"></div>
+    <img src="{{CDN_ASSETS_URL}}/icons/shield.png" alt="Shield Icon" class="shield-icon">
+    <div class="shield-text">0</div>
+  </div> -->
+
+  .health-bar {
+    width: 250px;
+    height: 20px;
+    background: #8B0000; /* Changed from rgba(0, 0, 0, 0.5) to solid dark red */
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    position: relative;
+  }
+
+  .health-bar-fill {
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(to right, #ff0000, #ff3333);
+    transition: width 0.3s ease;
+  }
+
+  .health-icon {
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 12px;
+    width: 12px;
+    z-index: 1;
+  }
+
+  .health-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.8em;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    z-index: 1;
+  }
+
+  <!-- <div class="exp-bar">
+    <div class="exp-bar-fill"></div>
+    <img src="{{CDN_ASSETS_URL}}/icons/ranks/unranked.png" alt="Exp Rank Icon" class="exp-icon">
+    <div class="exp-text">Unranked</div>
+  </div> -->
+
+  .exp-gain-indicator {
+    position: absolute;
+    z-index: 9999;
+    bottom: 100%; /* Start just above the bar */
+    left: 50%;
+    transform: translateX(-50%);
+    color: #e6be28; /* Match EXP bar color */
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    pointer-events: none;
+    white-space: nowrap;
+    animation: expGainFadeUp 1.5s ease-out forwards;
+  }
+
+  @keyframes expGainFadeUp {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, 10px); /* Start slightly lower and faded out */
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -30px); /* Move up and fade out */
+    }
+  }
+
+  .item-label {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 12px 20px;
+    border-radius: 4px;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    position: relative;
+    max-width: 220px;
+    margin: 0 auto;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+  }
+
+  .label-name {
+    font-size: 20px;
+    margin-bottom: 6px;
+    font-weight: bold;
+  }
+
+  .label-quantity {
+    position: absolute;
+    top: -12px;
+    right: -10px;
+    background: #ffb700;
+    color: black;
+    font-weight: bold;
+    padding: 2px 4px;
+    font-size: 14px;
+    text-transform: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: none;
+    border: 1px solid #ffffff;
+  }
+
+  .label-prompt {
+    font-size: 14px;
+    opacity: 0.8;
+  }
+
+  .label-caret {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid rgba(0, 0, 0, 0.6);
+  }
+
+  .player-rank-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .scope-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .scope-overlay.active {
+    opacity: 1;
+  }
+
+  #chat-window {
+    width: 25% !important;
+  }
+
+  .damage-indicator-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  .damage-indicator {
+    position: absolute;
+    opacity: 0;
+    background: linear-gradient(to center, rgba(255,0,0,0.7), rgba(255,0,0,0));
+  }
+
+  .damage-indicator.active {
+    opacity: 1;
+  }
+
+  /* Top damage indicator */
+  .damage-indicator.top {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(to bottom, rgba(255,0,0,0.7), rgba(255,0,0,0));
+  }
+
+  /* Right damage indicator */
+  .damage-indicator.right {
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255,0,0,0.7), rgba(255,0,0,0));
+  }
+
+  /* Bottom damage indicator */
+  .damage-indicator.bottom {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(to top, rgba(255,0,0,0.7), rgba(255,0,0,0));
+  }
+
+  /* Left damage indicator */
+  .damage-indicator.left {
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,0,0,0.7), rgba(255,0,0,0));
+  }
+
+  @keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  /* Leaderboard Styles */
+  .leaderboard {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    padding: 10px;
+    width: 15%;
+    max-width: 200px;
+    max-height: 40%;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    z-index: 100;
+  }
+
+  .leaderboard-title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  }
+
+  .leaderboard-timer {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  }
+
+  .leaderboard-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 5px;
+  }
+
+  .leaderboard-players {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow-y: scroll;
+  }
+
+  .leaderboard-player {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    transition: background 0.2s ease;
+  }
+
+  .leaderboard-player:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .leaderboard-players-count {
+    font-size: 14px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.7);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+  }
+
+  .rank-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    position: relative;
+    top: 1px;
+  }
+
+  .player-name {
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 160px;
+    text-overflow: ellipsis;
+  }
+
+  .mobile-buttons-container {
+    display: none;
+  }
+
+  /* Mobile UI */
+  body.mobile .hud {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 35px;
+    right: auto;
+  }
+
+  body.mobile .inventory-hud {
+    bottom: 30px;
+  }
+
+  body.mobile .inventory-slot {
+    width: 45px;
+    height: 45px;
+  }
+
+  body.mobile .slot-number {
+    font-size: 12px;
+    top: -16px;
+  }
+
+  body.mobile .slot-name {
+    font-size: 8px;
+    bottom: -14px;
+  }
+
+  body.mobile .slot-quantity {
+    font-size: 10px;
+  }
+
+  body.mobile .shield-bar,
+  body.mobile .health-bar,
+  body.mobile .exp-bar {
+    width: 120px;
+    height: 16px;
+  }
+
+  body.mobile .shield-text,
+  body.mobile .health-text,
+  body.mobile .exp-text {
+    font-size: 0.7em;
+  }
+
+  body.mobile .shield-icon,
+  body.mobile .health-icon {
+    width: 10px;
+    height: 10px;
+  }
+
+  body.mobile .exp-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  body.mobile .leaderboard-title {
+    font-size: 14px;
+  }
+
+  body.mobile .leaderboard-timer {
+    font-size: 12px;
+  }
+
+  body.mobile .leaderboard-players-count {
+    display: none;
+    font-size: 12px;
+  }
+
+  body.mobile .leaderboard-header {
+    font-size: 10px;
+  }
+
+  body.mobile .leaderboard-player {
+    font-size: 10px;
+  }
+
+  body.mobile .materials-counter {
+    right: 20px;
+    bottom: 115px;
+    font-size: 12px;
+  }
+
+  body.mobile .floating-number {
+    font-size: 14px;
+  }
+
+  body.mobile .exp-gain-indicator {
+    font-size: 12px;
+  }
+
+  body.mobile div > canvas { /* hide three debugger panels */
+    display: none !important;
+  }
+
+  body.mobile .mobile-buttons-container {
+    display: flex;
+    gap: 10px;
+    position: fixed;
+    bottom: 113px;
+    right: 118px;
+    user-select: none;
+  }
+
+  body.mobile .mobile-button {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 45px;
+    height: 45px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, background-color;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  }
+
+  body.mobile .mobile-button.active {
+    transform: scale(0.92);
+    background-color: rgba(0, 0, 0, 0.75);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  body.mobile .mobile-button img {
+    width: 25px;
+    height: 25px;
+  }
+
+  body.mobile .rank-up-title {
+    font-size: 40px;
+  }
+
+  body.mobile .rank-up-icon {
+    width: 100px;
+    height: 100px;
+  }
+
+  body.mobile .rank-up-name {
+    font-size: 30px;
+  }
+
+  /* New Health Display Styles */
+  .new-health-display {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 0, 0, 0.5);
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+    min-width: 80px; /* Ensure minimum width */
+    justify-content: center;
+  }
+
+  .new-health-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+  }
+
+  .new-health-value {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #ff4d4d; /* Brighter red for text */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  }
+  <!-- End New Health Display Styles -->
+
+  /* Countdown Timer Styles */
+  .countdown-timer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    padding: 15px;
+    width: 200px;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    z-index: 1001;
+    text-align: center;
+  }
+
+  .countdown-title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  }
+
+  .countdown-label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+  }
+
+  .countdown-seconds {
+    color: #FFD700;
+    font-size: 36px;
+    display: block;
+    margin-top: 5px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+  }
+  /* End Countdown Timer Styles */
+</style>

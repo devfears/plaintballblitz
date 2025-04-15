@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "hytopia-helper": {
+      "command": "bunx",
+      "args": [
+        "-y",
+        "topia-mcp@latest",
+        "serve",
+        "--dir",
+        "/Users/jamesfears/Desktop/paintemup"
+      ]
+    }
+  }
+}
