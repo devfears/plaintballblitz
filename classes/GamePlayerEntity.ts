@@ -382,8 +382,8 @@ export default class GamePlayerEntity extends PlayerEntity {
     this.playerController.autoCancelMouseLeftClick = false;
 
     // Set custom movement speeds
-    this.playerController.walkVelocity = 8; // Slightly reduced walking speed
-    this.playerController.runVelocity = 25; // Slightly reduced running speed
+    this.playerController.walkVelocity = 6; // Set walk speed to 6
+    this.playerController.runVelocity = 18; // Set run speed to 18
 
     // Reset animations to defaults initially
     this.resetAnimations();
@@ -603,17 +603,27 @@ export default class GamePlayerEntity extends PlayerEntity {
   }
 
   private _updatePlayerUIInventory(): void {
+    if (!this.player.ui) return;
+
+    const inventoryData = this._inventory.map(item => {
+      if (!item) return null; // Represent empty slot
+
+      // Check if the item is the specific paintball gun (adjust name if needed)
+      // Or add a property like 'hasInfiniteAmmo' to the gun entity itself
+      const isInfiniteAmmo = item.name === 'Paintball Gun'; // Example check by name
+
+      return {
+        name: item.name,
+        iconImageUri: item.iconImageUri,
+        // Send 'Infinity' string or a special marker instead of quantity for infinite ammo
+        quantity: isInfiniteAmmo ? 'Infinity' : item.getQuantity(), 
+        isInfinite: isInfiniteAmmo // Add a flag for easier client-side check
+      };
+    });
+
     this.player.ui.sendData({
       type: 'inventory',
-      inventory: this._inventory.map(item => {
-        if (!item) return;
-
-        return {
-          name: item.name,
-          iconImageUri: item.iconImageUri,
-          quantity: item.getQuantity(),
-        } as InventoryItem;
-      })
+      inventory: inventoryData,
     });
   }
 

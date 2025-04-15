@@ -36,7 +36,7 @@ export default class GameManager {
   private _gameActive: boolean = false;
   private _isWaitingForPlayers: boolean = false;
   private _countdownTimer: NodeJS.Timeout | undefined;
-  private _countdownSeconds: number = 10;
+  private _countdownSeconds: number = 20;
   private _isCountingDown: boolean = false;
 
   public get isGameActive(): boolean { return this._gameActive; }
@@ -457,9 +457,9 @@ export default class GameManager {
       clearTimeout(this._countdownTimer);
     }
     
-    console.log(`>>> [GameManager] _startCountdown: Starting 10 second countdown.`);
+    console.log(`>>> [GameManager] _startCountdown: Starting 20 second countdown.`);
     this._isCountingDown = true;
-    this._countdownSeconds = 10; // Reset to 10 seconds
+    this._countdownSeconds = 20;
     this._sendCountdownUpdateToAll(this._countdownSeconds, true); // Show timer for all
 
     this._countdownTimer = setInterval(() => {

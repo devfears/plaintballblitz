@@ -6,12 +6,12 @@
 <!-- UI-->
 <div class="crosshair"></div>
 
-<!-- Countdown Timer -->
-<div class="countdown-timer" style="display: none;">
-  <div class="countdown-title">COUNTDOWN</div>
-  <div class="countdown-label">Game starting in</div>
-  <span class="countdown-seconds">10</span>
-</div>
+<!-- Countdown Timer REMOVED -->
+<!-- <div class="countdown-timer" style="display: none;"> -->
+<!--   <div class="countdown-title">COUNTDOWN</div> -->
+<!--   <div class="countdown-label">Game starting in</div> -->
+<!--   <span class="countdown-seconds">10</span> -->
+<!-- </div> -->
 
 <div class="damage-indicator-container">
   <div class="damage-indicator top"></div>
@@ -47,6 +47,13 @@
   <div class="leaderboard-title">Deathmatch</div>
   <div class="leaderboard-timer">0:00</div>
   <div class="leaderboard-players-count">Players: 0</div>
+  <!-- Integrated Countdown -->
+  <div class="leaderboard-countdown" style="display: none;">
+    <div class="countdown-content-wrapper">
+      <span class="leaderboard-countdown-label">Starting in </span><span class="leaderboard-countdown-seconds">20</span>
+    </div>
+  </div>
+  <!-- End Integrated Countdown -->
   <div class="leaderboard-header">
     <div class="header-name">Player</div>
     <div class="header-kills">Kills</div>
@@ -482,20 +489,21 @@
       // Handle countdown timer updates
       if (type === 'countdown-update') {
         const { seconds, show } = data;
-        const countdownElement = document.querySelector('.countdown-timer');
-        const secondsSpan = document.querySelector('.countdown-seconds');
+        // Target the new countdown element inside the leaderboard
+        const countdownElement = document.querySelector('.leaderboard-countdown'); 
+        const secondsSpan = document.querySelector('.leaderboard-countdown-seconds');
         
         if (countdownElement && secondsSpan) {
           if (show && seconds > 0) {
             secondsSpan.textContent = seconds;
-            countdownElement.style.display = 'block';
-            console.log(`>>> UI received countdown-update: Show timer, ${seconds} seconds left`);
+            countdownElement.style.display = 'block'; // Show the integrated countdown
+            console.log(`>>> UI received countdown-update: Show integrated timer, ${seconds} seconds left`);
           } else {
-            countdownElement.style.display = 'none';
-            console.log(`>>> UI received countdown-update: Hide timer`);
+            countdownElement.style.display = 'none'; // Hide the integrated countdown
+            console.log(`>>> UI received countdown-update: Hide integrated timer`);
           }
         } else {
-          console.error(">>> UI ERROR: Could not find countdown timer elements");
+          console.error(">>> UI ERROR: Could not find integrated countdown timer elements (.leaderboard-countdown, .leaderboard-countdown-seconds)");
         }
       }
 
@@ -543,8 +551,17 @@
             name.textContent = item.name || '';
             name.style.display = item.name ? 'block' : 'none';
 
-            quantity.textContent = item.quantity > 1 ? item.quantity : '';
-            quantity.style.display = item.quantity > 1 ? 'block' : 'none';
+            // Check for infinite ammo flag or specific quantity string
+            if (item.isInfinite || item.quantity === 'Infinity') {
+              quantity.textContent = '∞'; // Use infinity symbol
+              quantity.style.display = 'block'; // Ensure it's shown
+            } else if (item.quantity > 1) {
+              quantity.textContent = item.quantity;
+              quantity.style.display = 'block';
+            } else {
+              quantity.textContent = ''; // Clear text if quantity is 1 or less
+              quantity.style.display = 'none'; // Hide if quantity is 1 or less
+            }
         });
       }
     } catch (error) {
@@ -1504,50 +1521,30 @@
   }
   <!-- End New Health Display Styles -->
 
-  /* Countdown Timer Styles */
-  .countdown-timer {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 5px;
-    padding: 15px;
-    width: 200px;
-    font-family: 'Arial', sans-serif;
-    color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    z-index: 1001;
+  /* Add Integrated Leaderboard Countdown Styles */
+  .leaderboard-countdown {
     text-align: center;
+    margin-bottom: 10px;
   }
 
-  .countdown-title {
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    padding-bottom: 5px;
-    margin-bottom: 5px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+  .countdown-content-wrapper {
+    display: inline-block;
+    padding: 3px 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-  }
-
-  .countdown-label {
-    margin-bottom: 5px;
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.8);
-    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
   }
 
-  .countdown-seconds {
-    color: #FFD700;
-    font-size: 36px;
-    display: block;
-    margin-top: 5px;
-    font-weight: bold;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+  .leaderboard-countdown-label {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: normal;
   }
-  /* End Countdown Timer Styles */
+
+  .leaderboard-countdown-seconds {
+    font-weight: bold;
+  }
+  /* End Integrated Leaderboard Countdown Styles */
 </style>
