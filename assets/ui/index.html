@@ -564,31 +564,42 @@
             }
         });
       }
+
+      // Handle health updates
+      if (type === 'health') {
+        const { health } = data;
+        const healthValueElement = document.querySelector('.new-health-value');
+        if (healthValueElement) {
+          healthValueElement.textContent = health;
+          console.log(`>>> UI received health update: ${health}`);
+        } else {
+          console.error(">>> UI ERROR: Could not find .new-health-value element");
+        }
+      }
+      // End Handle health updates
+
     } catch (error) {
       console.error(">>> UI ERROR in data handler:", error);
     }
 
-    const ammoIndicator = document.querySelector('.ammo-indicator');
-    const currentAmmoSpan = document.querySelector('.ammo-indicator .current-ammo');
-    // const totalAmmoSpan = document.querySelector('.ammo-indicator .total-ammo'); // No longer needed
+    if (type === 'ammo-indicator') {
+      const ammoIndicator = document.querySelector('.ammo-indicator');
+      const currentAmmoSpan = document.querySelector('.ammo-indicator .current-ammo');
 
-    if (!ammoIndicator || !currentAmmoSpan) {
-      console.error(">>> UI ERROR: Could not find ammo indicator elements");
-      return;
-    }
-
-    if (data.show) {
-      if (data.reloading) {
-        ammoIndicator.style.display = 'flex';
-        currentAmmoSpan.textContent = '--'; // Indicate reloading
-        // totalAmmoSpan.textContent = '∞'; // Keep infinity symbol
-      } else if (data.ammo !== undefined) {
-        ammoIndicator.style.display = 'flex';
-        currentAmmoSpan.textContent = data.ammo;
-        // totalAmmoSpan.textContent = '∞'; // Keep infinity symbol
+      if (!ammoIndicator || !currentAmmoSpan) {
+        console.error(">>> UI ERROR: Could not find ammo indicator elements");
+        return;
       }
-    } else {
-      ammoIndicator.style.display = 'none';
+
+      if (data.show) {
+        if (data.reloading) {
+          ammoIndicator.style.display = 'flex';
+          currentAmmoSpan.textContent = '--'; // Indicate reloading
+        } else if (data.ammo !== undefined) {
+          ammoIndicator.style.display = 'flex';
+          currentAmmoSpan.textContent = data.ammo;
+        }
+      }
     }
   });
   
